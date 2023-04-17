@@ -41,14 +41,14 @@ namespace SurphizVoll
         }
 
         // CONE
-        double coneSfc(double r, double h)
+        double conSfc(double r, double h)
         {
             return (Math.PI * r) * (r + Math.Sqrt(Math.Pow(h, 2) + Math.Pow(r,2)));
         }
 
-        double coneVol(double r, double h)
+        double conVol(double r, double h)
         {
-            return 1 / 3 * (Math.PI * Math.Pow(r, 2)) + h;
+            return (1/3) * (Math.PI * Math.Pow(r, 2)) + h;
         }
 
 
@@ -72,7 +72,34 @@ namespace SurphizVoll
 
         private void btnSph_Click(object sender, EventArgs e)
         {
+            try
+            {
+                double sphRadius = double.Parse(txtSphR.Text);
+                lblSphSfc.Text = "SURFACE AREA:    " + sphereSfc(sphRadius);
+                lblSphVol.Text = "VOLUME:    " + sphereVol(sphRadius);
+            }
+            catch
+            {
+                lblSphSfc.Text = "SURFACE AREA:    INVALID INPUT";
+                lblSphVol.Text = "VOLUME:    INVALID INPUT";
+            }
+        }
 
+        private void btnCon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double conRadius = double.Parse(txtConR.Text);
+                double conHeight = double.Parse(txtConH.Text);
+
+                lblConSfc.Text = "SURFACE AREA:    " + conSfc(conRadius, conHeight);
+                lblConVol.Text = "VOLUME:    " + conVol(conRadius, conHeight);
+            }
+            catch
+            {
+                lblConSfc.Text = "SURFACE AREA:    INVALID INPUT";
+                lblConVol.Text = "VOLUME:    INVALID INPUT";
+            }
         }
     }
 }
